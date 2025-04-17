@@ -1,0 +1,40 @@
+﻿<Window x:Class="PR20.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PR20"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Таблицы">
+                <MenuItem Header="1" Click="MenuItem_Click"/>
+                <MenuItem Header="2" Click="MenuItem_Click"/>
+                <MenuItem Header="3" Click="MenuItem_Click"/>
+                <MenuItem Header="4" Click="MenuItem_Click"/>
+                <MenuItem Header="5" Click="MenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Функции">
+                <MenuItem Header="Добавить" Click="MenuItem_Click"/>
+                <MenuItem Header="Редактировать" Click="MenuItem_Click"/>
+                <MenuItem Header="Удалить" Click="MenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <GroupBox Header="Таблица" Margin="5" Grid.Row="1">
+            <DataGrid x:Name="dataGridMain" AutoGenerateColumns="False" IsReadOnly="True" Margin="5">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Binding="{Binding IdWorkNavigation.NameWork}" Header="Название работы"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding IdObject1.NameObject}" Header="Название обьекта"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding IdObjectNavigation.DateCompletionDate}" Header="Дата завершение работы"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding IdWorkNavigation.Price}" Header="Цена работы"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+    </Grid>
+</Window>
