@@ -69,13 +69,14 @@ namespace PR20
         }
         private void EditItem()
         {
-            if(dataGridMain.SelectedItem != null)
+            if (dataGridMain.SelectedItem != null)
             {
                 Data.volumeWorkObject = (VolumeWorkObject)dataGridMain.SelectedItem;
                 AddDBItem f = new AddDBItem();
                 f.Owner = this;
                 f.ShowDialog();
                 LoadDBInDataGrid();
+            }
         }
     }
 }

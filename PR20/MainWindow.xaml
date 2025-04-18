@@ -13,13 +13,6 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
-            <MenuItem Header="Таблицы">
-                <MenuItem Header="1" Click="MenuItem_Click"/>
-                <MenuItem Header="2" Click="MenuItem_Click"/>
-                <MenuItem Header="3" Click="MenuItem_Click"/>
-                <MenuItem Header="4" Click="MenuItem_Click"/>
-                <MenuItem Header="5" Click="MenuItem_Click"/>
-            </MenuItem>
             <MenuItem Header="Функции">
                 <MenuItem Header="Добавить" Click="MenuItem_Click"/>
                 <MenuItem Header="Редактировать" Click="MenuItem_Click"/>
