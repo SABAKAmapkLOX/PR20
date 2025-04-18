@@ -12,8 +12,10 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Margin="5">
-            <Label Content="Название объекта" Margin="1"/>
-            <ComboBox x:Name="cbIdObject" SelectedItem="{Binding Path=IdObject1}"/>
+            <Label Content="Название работы" Margin="1"/>
+            <ComboBox x:Name="cbNameWork" SelectedItem="{Binding Path = IdWorkNavigation}"/>
+            <Label Content="Название обьекта" Margin="1"/>
+            <ComboBox x:Name="cbNameObject" SelectedItem="{Binding Path=IdObject1}"/>
             <Label Content="Дата выполненной работы" Margin="1"/>
             <ComboBox x:Name="cbIdObjectNavigation" SelectedItem="{Binding Path=IdObjectNavigation}"/>
             <Label Content="Цена виды работы" Margin="1"/>

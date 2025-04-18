@@ -19,22 +19,17 @@ namespace PR20
     {
         SpravochnikV5Context _db = new SpravochnikV5Context();
         VolumeWorkObject _volumeWorkObject;
-        List<DirectoryPrice> objects  =new List<DirectoryPrice>();
         public AddDBItem()
         {
             InitializeComponent();
-            //objects = _db.DirectoryPrices.ToList();
-            //for (int i = 0; i < objects.Count; i++)
-            //{
-          //  cbDirectoryPrice.Items.Add("adsdasdas");
-
-            //}
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            cbIdObject.ItemsSource = _db.DirectoryObjects.ToList();
-            cbIdObject.DisplayMemberPath = "NameObject";
-            cbDirectoryPrice.ItemsSource = _db.DirectoryPrices.ToList();
+            cbNameObject.ItemsSource = _db.DirectoryObject.ToList();
+            cbNameObject.DisplayMemberPath = "NameObject";
+            cbNameWork.ItemsSource = _db.DirectoryObject.ToList();
+            cbNameWork.DisplayMemberPath = "NameWork";
+            cbDirectoryPrice.ItemsSource = _db.DirectoryObject.ToList();
             cbDirectoryPrice.DisplayMemberPath = "Price";
             cbIdObjectNavigation.ItemsSource = _db.DirectoryCompletionWorks.ToList();
             cbIdObjectNavigation.DisplayMemberPath = "DateCompletionDate";
@@ -57,14 +52,21 @@ namespace PR20
         private void btAddItem_Click(object sender, EventArgs e)
         {
             StringBuilder error = new StringBuilder();
+
+            if (cbNameWork.SelectedItem == null)
+            {
+                error.AppendLine("Введите название работы");
+            } 
+            if (cbNameObject.SelectedItem == null)
+            {
+                error.AppendLine("Введите название работы");
+            }
+
             if (cbDirectoryPrice.SelectedItem == null)
             {
                 error.Append("Выберите справочник цен");
             }
-            if (cbIdObject.SelectedItem == null)
-            {
-                error.Append("Выберете справочник обьекта");
-            }
+           
             if (cbIdObjectNavigation.SelectedItem == null)
             {
                 error.Append("Выберете справочник выполненной работы");
@@ -76,7 +78,11 @@ namespace PR20
                     _db.VolumeWorkObjects.Add(_volumeWorkObject);
                     _db.SaveChanges();
                 }
-                else _db.SaveChanges();
+                else
+                {
+                    _db.SaveChanges();
+                    Close();
+                }
             }
             catch (Exception ex)
             {

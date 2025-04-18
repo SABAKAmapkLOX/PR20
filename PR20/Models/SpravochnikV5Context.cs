@@ -19,7 +19,7 @@ public partial class SpravochnikV5Context : DbContext
 
     public virtual DbSet<DirectoryObject> DirectoryObjects { get; set; }
 
-    public virtual DbSet<DirectoryPrice> DirectoryPrices { get; set; }
+    public virtual DbSet<DirectoryPrice> DirectoryObject { get; set; }
 
     public virtual DbSet<DirectoryTypeWork> DirectoryTypeWorks { get; set; }
 
