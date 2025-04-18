@@ -28,7 +28,7 @@ namespace PR20
             cbNameObject.ItemsSource = _db.DirectoryObject.ToList();
             cbNameObject.DisplayMemberPath = "NameObject";
             cbNameWork.ItemsSource = _db.DirectoryObject.ToList();
-            cbNameWork.DisplayMemberPath = "NameWork";
+            //cbNameWork.DisplayMemberPath = "NameWork";
             cbDirectoryPrice.ItemsSource = _db.DirectoryObject.ToList();
             cbDirectoryPrice.DisplayMemberPath = "Price";
             cbIdObjectNavigation.ItemsSource = _db.DirectoryCompletionWorks.ToList();
