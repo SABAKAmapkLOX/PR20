@@ -32,8 +32,8 @@ namespace PR20
             using (SpravochnikV5Context _db = new SpravochnikV5Context())
             {
                 int selectIndex = dataGridMain.SelectedIndex;
-                _db.DirectoryCompletionWorks.Load();
                 _db.DirectoryObjects.Load();
+                _db.DirectoryCompletionWorks.Load();
                 _db.DirectoryPrices.Load();
                 _db.DirectoryTypeWorks.Load();
                 _db.VolumeWorkObjects.Load();

@@ -91,20 +91,19 @@ public partial class SpravochnikV5Context : DbContext
 
         modelBuilder.Entity<VolumeWorkObject>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("VolumeWorkObject");
+            entity.ToTable("VolumeWorkObject");
 
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.IdObject).HasColumnName("idObject");
             entity.Property(e => e.IdWork).HasColumnName("idWork");
             entity.Property(e => e.VolumeWork).HasColumnType("decimal(18, 0)");
 
-            entity.HasOne(d => d.IdObjectNavigation).WithMany()
+            entity.HasOne(d => d.IdObjectNavigation).WithMany(p => p.VolumeWorkObjects)
                 .HasForeignKey(d => d.IdObject)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_VolumeWorkObject_DirectoryObject");
 
-            entity.HasOne(d => d.IdWorkNavigation).WithMany()
+            entity.HasOne(d => d.IdWorkNavigation).WithMany(p => p.VolumeWorkObjects)
                 .HasForeignKey(d => d.IdWork)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_VolumeWorkObject_DirectoryPrice");
