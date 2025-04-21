@@ -10,8 +10,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        
         <Menu Grid.Row="0">
             <MenuItem Header="Функции">
                 <MenuItem Header="Добавить" Click="MenuItem_Click"/>
@@ -19,17 +19,48 @@
                 <MenuItem Header="Удалить" Click="MenuItem_Click"/>
             </MenuItem>
         </Menu>
-        <GroupBox Header="Таблица" Margin="5" Grid.Row="1">
-            <DataGrid x:Name="dataGridMain" AutoGenerateColumns="False" IsReadOnly="True" Margin="5">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Width="*" Binding="{Binding IdWorkNavigation.NameWork}" Header="Название работы"/>
-                    <DataGridTextColumn Width="*" Binding="{Binding IdObjectNavigation.NameObject}" Header="Название обьекта"/>
-                    <DataGridTextColumn Width="*" Binding="{Binding VolumeWork}" Header="Обьем работы"/>
-                    <DataGridTextColumn Width="*" Binding="{Binding IdWorkNavigation.Price}" Header="Цена"/>
-                    <DataGridTextColumn Width="*" Binding="{Binding IdObjectNavigation.DateBeginingWork}" Header="Дата начала работ"/>
-                    <DataGridTextColumn Width="*" Binding="{Binding IdObjectNavigation.DateCompletionDate}" Header="Дата конца работ"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </GroupBox>
+
+        <TabControl Grid.Row="1">
+            <TabItem Header="Таблица">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Таблица" Margin="5" Grid.Row="1">
+                        <DataGrid x:Name="dataGridMain" AutoGenerateColumns="False" IsReadOnly="True" Margin="5">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*" Binding="{Binding IdWorkNavigation.NameWork}" Header="Название работы"/>
+                                <DataGridTextColumn Width="*" Binding="{Binding IdObjectNavigation.NameObject}" Header="Название обьекта"/>
+                                <DataGridTextColumn Width="*" Binding="{Binding VolumeWork}" Header="Обьем работы"/>
+                                <DataGridTextColumn Width="*" Binding="{Binding IdWorkNavigation.Price}" Header="Цена"/>
+                                <DataGridTextColumn Width="*" Binding="{Binding IdObjectNavigation.DateBeginingWork}" Header="Дата начала работ"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="SQL Запросы">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="SQL Запрос" Grid.Row="0" Margin="5">
+                        <StackPanel>
+                            <DataGrid x:Name="dataGridSQL" IsReadOnly="True" Margin="5"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Row="1" Margin="5" Header="SQL Запросы">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                            <Button Content="Количество объектов в одном городе" Margin="5" Click="Button_Click"/>
+                            <Button Content="Итоговой стоимости всех работ одного вида" Margin="5" Click="Button_Click"/>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        
     </Grid>
 </Window>

@@ -19,10 +19,12 @@ namespace PR20
     {
         SpravochnikV5Context _db = new SpravochnikV5Context();
         VolumeWorkObject _volumeWorkObject;
+
         public AddDBItem()
         {
             InitializeComponent();
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             cbNameObject.ItemsSource = _db.DirectoryObjects.ToList();
@@ -33,7 +35,7 @@ namespace PR20
             {
                 this.Title = "Изменение записи";
                 btAddItem.Content = "Изменение";
-                _volumeWorkObject = _db.VolumeWorkObjects.Find(Data.volumeWorkObject.IdObject);
+                _volumeWorkObject = _db.VolumeWorkObjects.Find(Data.volumeWorkObject.Id);
             }
             else
             {
@@ -68,6 +70,7 @@ namespace PR20
                 {
                     _db.VolumeWorkObjects.Add(_volumeWorkObject);
                     _db.SaveChanges();
+                    Close();
                 }
                 else
                 {
