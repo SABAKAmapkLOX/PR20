@@ -9,5 +9,5 @@ public partial class DirectoryCompletionWork
 
     public DateTime? DateCompletionDate { get; set; }
 
-    public virtual VolumeWorkObject? VolumeWorkObject { get; set; }
+    public virtual DirectoryObject? DirectoryObject { get; set; }
 }

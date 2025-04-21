@@ -34,7 +34,7 @@ namespace PR20
                 int selectIndex = dataGridMain.SelectedIndex;
                 _db.DirectoryCompletionWorks.Load();
                 _db.DirectoryObjects.Load();
-                _db.DirectoryObject.Load();
+                _db.DirectoryPrices.Load();
                 _db.DirectoryTypeWorks.Load();
                 _db.VolumeWorkObjects.Load();
                 dataGridMain.ItemsSource = _db.VolumeWorkObjects.ToList();

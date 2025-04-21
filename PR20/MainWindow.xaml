@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PR20"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Практическая №20" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -23,9 +23,11 @@
             <DataGrid x:Name="dataGridMain" AutoGenerateColumns="False" IsReadOnly="True" Margin="5">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="*" Binding="{Binding IdWorkNavigation.NameWork}" Header="Название работы"/>
-                    <DataGridTextColumn Width="*" Binding="{Binding IdObject1.NameObject}" Header="Название обьекта"/>
-                    <DataGridTextColumn Width="*" Binding="{Binding IdObjectNavigation.DateCompletionDate}" Header="Дата завершение работы"/>
-                    <DataGridTextColumn Width="*" Binding="{Binding IdWorkNavigation.Price}" Header="Цена работы"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding IdObjectNavigation.NameObject}" Header="Название обьекта"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding VolumeWork}" Header="Обьем работы"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding IdWorkNavigation.Price}" Header="Цена"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding IdObjectNavigation.DateBeginingWork}" Header="Дата начала работ"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding IdObjectNavigation.DateCompletionDate}" Header="Дата конца работ"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>

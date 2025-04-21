@@ -25,14 +25,10 @@ namespace PR20
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            cbNameObject.ItemsSource = _db.DirectoryObject.ToList();
+            cbNameObject.ItemsSource = _db.DirectoryObjects.ToList();
             cbNameObject.DisplayMemberPath = "NameObject";
-            cbNameWork.ItemsSource = _db.DirectoryObject.ToList();
-            //cbNameWork.DisplayMemberPath = "NameWork";
-            cbDirectoryPrice.ItemsSource = _db.DirectoryObject.ToList();
-            cbDirectoryPrice.DisplayMemberPath = "Price";
-            cbIdObjectNavigation.ItemsSource = _db.DirectoryCompletionWorks.ToList();
-            cbIdObjectNavigation.DisplayMemberPath = "DateCompletionDate";
+            cbNameWork.ItemsSource = _db.DirectoryPrices.ToList();
+            cbNameWork.DisplayMemberPath = "NameWork";
             if (Data.volumeWorkObject != null)
             {
                 this.Title = "Изменение записи";
@@ -62,14 +58,9 @@ namespace PR20
                 error.AppendLine("Введите название работы");
             }
 
-            if (cbDirectoryPrice.SelectedItem == null)
+            if (cbVolumeWork.Text == null)
             {
-                error.Append("Выберите справочник цен");
-            }
-           
-            if (cbIdObjectNavigation.SelectedItem == null)
-            {
-                error.Append("Выберете справочник выполненной работы");
+                error.Append("Введите текст");
             }
             try
             {

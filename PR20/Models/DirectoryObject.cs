@@ -15,5 +15,7 @@ public partial class DirectoryObject
 
     public DateTime DateBeginingWork { get; set; }
 
-    public virtual VolumeWorkObject? VolumeWorkObject { get; set; }
+    public virtual DirectoryCompletionWork IdObjectNavigation { get; set; } = null!;
+
+    public virtual ICollection<VolumeWorkObject> VolumeWorkObjects { get; set; } = new List<VolumeWorkObject>();
 }

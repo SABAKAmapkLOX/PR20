@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PR20"
         mc:Ignorable="d"
-        Title="AddDBItem" Height="450" Width="300" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="AddDBItem" Height="250" Width="300" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -15,11 +15,9 @@
             <Label Content="Название работы" Margin="1"/>
             <ComboBox x:Name="cbNameWork" SelectedItem="{Binding Path = IdWorkNavigation}"/>
             <Label Content="Название обьекта" Margin="1"/>
-            <ComboBox x:Name="cbNameObject" SelectedItem="{Binding Path=IdObject1}"/>
-            <Label Content="Дата выполненной работы" Margin="1"/>
-            <ComboBox x:Name="cbIdObjectNavigation" SelectedItem="{Binding Path=IdObjectNavigation}"/>
-            <Label Content="Цена виды работы" Margin="1"/>
-            <ComboBox x:Name="cbDirectoryPrice" SelectedItem="{Binding Path=IdWorkNavigation}"/>
+            <ComboBox x:Name="cbNameObject" SelectedItem="{Binding Path = IdObjectNavigation}"/>
+            <Label Content="Обьем работы" Margin="1"/>
+            <TextBox x:Name="cbVolumeWork" Text="{Binding Path = VolumeWork}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Margin="5" Orientation="Horizontal">
             <Button Content="Добавить" Margin="5" Click="btAddItem_Click" Name="btAddItem"/>

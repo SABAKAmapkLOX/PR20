@@ -19,7 +19,7 @@ public partial class SpravochnikV5Context : DbContext
 
     public virtual DbSet<DirectoryObject> DirectoryObjects { get; set; }
 
-    public virtual DbSet<DirectoryPrice> DirectoryObject { get; set; }
+    public virtual DbSet<DirectoryPrice> DirectoryPrices { get; set; }
 
     public virtual DbSet<DirectoryTypeWork> DirectoryTypeWorks { get; set; }
 
@@ -27,7 +27,7 @@ public partial class SpravochnikV5Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server=LAB44-11\\SQLEXPRESS; Database=SpravochnikV5; user=исп-34; Password=1234567890; Encrypt=false");
+        => optionsBuilder.UseSqlServer("server=localhost\\SQLEXPRESS; Database=SpravochnikV5; user=исп-34; Password=1234567890; Encrypt=false");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -37,7 +37,9 @@ public partial class SpravochnikV5Context : DbContext
 
             entity.ToTable("DirectoryCompletionWork");
 
-            entity.Property(e => e.IdObject).HasColumnName("idObject");
+            entity.Property(e => e.IdObject)
+                .ValueGeneratedNever()
+                .HasColumnName("idObject");
             entity.Property(e => e.DateCompletionDate).HasColumnType("datetime");
         });
 
@@ -47,8 +49,15 @@ public partial class SpravochnikV5Context : DbContext
 
             entity.ToTable("DirectoryObject");
 
-            entity.Property(e => e.IdObject).HasColumnName("idObject");
+            entity.Property(e => e.IdObject)
+                .ValueGeneratedNever()
+                .HasColumnName("idObject");
             entity.Property(e => e.DateBeginingWork).HasColumnType("datetime");
+
+            entity.HasOne(d => d.IdObjectNavigation).WithOne(p => p.DirectoryObject)
+                .HasForeignKey<DirectoryObject>(d => d.IdObject)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_DirectoryObject_DirectoryCompletionWork");
         });
 
         modelBuilder.Entity<DirectoryPrice>(entity =>
@@ -57,7 +66,9 @@ public partial class SpravochnikV5Context : DbContext
 
             entity.ToTable("DirectoryPrice");
 
-            entity.Property(e => e.IdWork).HasColumnName("idWork");
+            entity.Property(e => e.IdWork)
+                .ValueGeneratedNever()
+                .HasColumnName("idWork");
             entity.Property(e => e.IdTypeWork).HasColumnName("idTypeWork");
             entity.Property(e => e.Price).HasColumnType("decimal(18, 0)");
 
@@ -73,32 +84,27 @@ public partial class SpravochnikV5Context : DbContext
 
             entity.ToTable("DirectoryTypeWork");
 
-            entity.Property(e => e.IdTypeWork).HasColumnName("idTypeWork");
+            entity.Property(e => e.IdTypeWork)
+                .ValueGeneratedNever()
+                .HasColumnName("idTypeWork");
         });
 
         modelBuilder.Entity<VolumeWorkObject>(entity =>
         {
-            entity.HasKey(e => e.IdObject);
+            entity
+                .HasNoKey()
+                .ToTable("VolumeWorkObject");
 
-            entity.ToTable("VolumeWorkObject");
-
-            entity.Property(e => e.IdObject)
-                .ValueGeneratedNever()
-                .HasColumnName("idObject");
+            entity.Property(e => e.IdObject).HasColumnName("idObject");
             entity.Property(e => e.IdWork).HasColumnName("idWork");
             entity.Property(e => e.VolumeWork).HasColumnType("decimal(18, 0)");
 
-            entity.HasOne(d => d.IdObjectNavigation).WithOne(p => p.VolumeWorkObject)
-                .HasForeignKey<VolumeWorkObject>(d => d.IdObject)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_VolumeWorkObject_DirectoryCompletionWork");
-
-            entity.HasOne(d => d.IdObject1).WithOne(p => p.VolumeWorkObject)
-                .HasForeignKey<VolumeWorkObject>(d => d.IdObject)
+            entity.HasOne(d => d.IdObjectNavigation).WithMany()
+                .HasForeignKey(d => d.IdObject)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_VolumeWorkObject_DirectoryObject");
 
-            entity.HasOne(d => d.IdWorkNavigation).WithMany(p => p.VolumeWorkObjects)
+            entity.HasOne(d => d.IdWorkNavigation).WithMany()
                 .HasForeignKey(d => d.IdWork)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_VolumeWorkObject_DirectoryPrice");
