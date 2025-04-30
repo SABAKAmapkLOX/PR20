@@ -46,6 +46,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <GroupBox Header="SQL Запрос" Grid.Row="0" Margin="5">
                         <StackPanel>
@@ -56,6 +57,15 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                             <Button Content="Количество объектов в одном городе" Margin="5" Click="Button_Click"/>
                             <Button Content="Итоговой стоимости всех работ одного вида" Margin="5" Click="Button_Click"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Row="2" Margin="5">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+                            <Button Margin="5" Click="Button_Click" Name="btSQL1" Content="Просмотр сведений обо всех объектах, на которых предусмотрено выполнение работ одного вида"/>
+                            <Button Margin="5" Click="Button_Click" Name="btSQL2" Content="Добавление записей в таблицу Справочник окончания работ"/>
+                            <Button Margin="5" Click="Button_Click" Name="btSQL3" Content="Подсчета количества месяцев строительства"/>
+                            <Button Margin="5" Click="Button_Click" Name="btSQL4" Content="Вывести список работ, срок окончания которых предусмотрен в 3 квартале этого года"/>
+                            <Button Margin="5" Click="Button_Click" Name="btSQL5" Content="вывести Наименование работ с максимальной расценкой"/>
                         </StackPanel>
                     </GroupBox>
                 </Grid>
