@@ -196,14 +196,13 @@ namespace PR20
                     //вывести Наименование работ с максимальной расценкой
                     case 7:
                         var query5 = (from price in _db.DirectoryPrices
-                                      join volumeWorkObject in _db.VolumeWorkObjects
-                                      on price.IdWork equals volumeWorkObject.IdWork
+                                      group price by price.NameWork into g
                                       select new
                                       { 
-                                          НаименованиеРаботы = price.NameWork,
-                                          МаксимальнаяРасценка = _db.DirectoryPrices.Max(p => p.Price)
+                                          НаименованиеРаботы = g.Key,
+                                          МаксимальнаяЦена = g.Max(p => p.Price)
                                       });
-                        dataGridSQL.ItemsSource = query5.ToList();
+                        dataGridSQL.ItemsSource = query5.Where(p=>p.МаксимальнаяЦена==query5.Max(p=>p.МаксимальнаяЦена)).ToList();
                         ; break;
                 }
             }

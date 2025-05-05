@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PR20"
         mc:Ignorable="d"
-        Title="Практическая №20" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Практическая №20" Height="500" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
